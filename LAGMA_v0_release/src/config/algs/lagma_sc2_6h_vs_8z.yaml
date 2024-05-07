@@ -1,0 +1,81 @@
+# --- VQMIX specific parameters ---
+
+# use epsilon greedy action selector
+action_selector: "epsilon_greedy"
+epsilon_start: 1.0
+epsilon_finish: 0.05
+epsilon_anneal_time: 500000
+
+mac: "lagma_mac"
+agent: "lagma"
+
+buffer_size: 5000
+
+# update the target network every {} episodes
+target_update_interval: 200
+
+# use the Q_Learner to train
+agent_output_type: "q"
+learner: "lagma_learner"
+double_q: True
+mixer: "qmix"
+mixing_embed_dim: 32
+hypernet_layers: 2
+hypernet_embed: 64
+
+# task dependent settings ==================
+# a) vae parameters -------------
+vae: "vqvae"
+vqvae_update_interval    : 10    # default (10) training run number
+codebook_update_interval : 40    # default (10) training run number
+n_codes                  : 64    # default (64)
+latent_dim               : 8     # default (8)
+
+# b) vq coefficient ------------------------
+vq_coef                  : 1.0
+commit_coef              : 0.5
+coverage_coef            : 0.5
+# ==========================================
+
+# fixed settings ===========================
+# a) vae parameters ------------------------
+vae_hidden_dim: 64
+n_max_code    : 100  # maximum number of buffer for each embedding node for moving average computation
+#n_ref_seq     : 50  # the number of reference sequence 
+k_top_seq     : 30   # the number of top-k sequence w.r.t. cq0 value
+lambda_exp    : 0.5  # level of explorative incentive when generating Cq0, Cqt
+recon_type    : 1    # 1-state, 2-value, 3-both state/value
+return_type   : 1    # 1-Cqt, # 2-Rtd (only applied for recon_type=3)
+ref_max_time  : 1    # 1-batch_time_max, 2-env_time_max
+recon_coef    : 0.1
+vqvae_update_type: 1              # 1-update with replay buffer, 2-update once in a while separately
+vqvae_training_stop: 100000000    # stop training timestep (t_env)
+
+# b) loss settings-------------------------
+flag_zero_state_management : False   # False - original loss
+flag_batch_wise_vqvae_loss : False   # False - original loss
+flag_loss_type : 1 # 0 - mixed, 1-L2 norm, 2-MSE loss
+
+
+# c) etc...
+incentive_type: 1                 # reward by 1-moving average, 2-sequence value (optimistic)
+buffer_update_time: 50000 # t_env
+trj_update_freq  : 5 # timestep (large number means only initial update)
+buffer_update_ref: 2 # 1-Cq0 (sum_rewards), 2-Cqt (reward_tgo)
+
+save_vae_info : True
+sampling_type : 1 # 1-random, 2-Categorical # a reference trajectory sequence sampling from k-trajrectories
+timestep_emb  : True # timestep dependent embedding learning on/off for L_coverage
+
+goal_reward   : True
+use_vqvae     : True
+
+#.. not used
+vqvae_training_batch      : 512   # training samples from replay buffer should be smaller than the size of replay buffer
+vqvae_training_mini_batch : 128   # mini-batch size for vqvae training
+flag_desirability : False         # True - consider desirability when generating goal-reaching trajectory
+flag_UCB_incentive: False         # True - consider UCB incentive in value estimation, False - not consider
+UCB_param_t   : 2                 # t-value in UCB
+# ==========================================
+
+name: "lagma-qmix"     
