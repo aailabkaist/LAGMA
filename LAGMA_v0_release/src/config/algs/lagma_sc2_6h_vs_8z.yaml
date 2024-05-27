@@ -28,6 +28,7 @@ hypernet_embed: 64
 vae: "vqvae"
 vqvae_update_interval    : 10    # default (10) training run number
 codebook_update_interval : 40    # default (10) training run number
+<<<<<<< HEAD
 n_codes                  : 256   # default (64)
 latent_dim               : 8     # default (8)
 
@@ -35,6 +36,15 @@ latent_dim               : 8     # default (8)
 vq_coef                  : 2.0
 commit_coef              : 1.0
 coverage_coef            : 1.0
+=======
+n_codes                  : 64    # default (64)
+latent_dim               : 8     # default (8)
+
+# b) vq coefficient ------------------------
+vq_coef                  : 1.0
+commit_coef              : 0.5
+coverage_coef            : 0.5
+>>>>>>> 257e39a5ad4ce051b1a491b5aa056c1a6cc15889
 # ==========================================
 
 # fixed settings ===========================

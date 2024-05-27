@@ -286,6 +286,7 @@ class LAGMALearner:
                     #.. compute timedependent indexing ----------
                     if t == 0:
                         if self.args.ref_max_time == 1:
+<<<<<<< HEAD
                             dn   = int(self.args.n_codes / batch.max_seq_length) # dn
                             dn_r = (self.args.n_codes / batch.max_seq_length) # dn_r
                             dr   = self.args.n_codes % batch.max_seq_length
@@ -295,6 +296,15 @@ class LAGMALearner:
                             dn_r = int(self.args.n_codes / self.args.max_seq_length ) # dn_r
                             dr   = self.args.n_codes % self.args.max_seq_length
                             ids  = dn * self.args.max_seq_length
+=======
+                            dn = int(self.args.n_codes / batch.max_seq_length) # dn
+                            dr = self.args.n_codes % batch.max_seq_length
+                            ids = dn*batch.max_seq_length
+                        elif self.args.ref_max_time == 2:
+                            dn = int(self.args.n_codes / self.args.max_seq_length ) # dn
+                            dr = self.args.n_codes % self.args.max_seq_length
+                            ids = dn * self.args.max_seq_length
+>>>>>>> 257e39a5ad4ce051b1a491b5aa056c1a6cc15889
                         
                     if dn >= 1:    
                         ndx = np.arange(dn*t, dn*(t+1), 1)      
@@ -302,8 +312,12 @@ class LAGMALearner:
                             ndx = np.append(ndx, np.array(ids+t))
                        
                     else:
+<<<<<<< HEAD
                         #ndx = np.array([int(t*dn)])
                         ndx = np.array([int(t*dn_r)]) # corrected
+=======
+                        ndx = np.array([int(t*dn)])
+>>>>>>> 257e39a5ad4ce051b1a491b5aa056c1a6cc15889
                         
                     if self.args.timestep_emb == False:
                         ndx = None

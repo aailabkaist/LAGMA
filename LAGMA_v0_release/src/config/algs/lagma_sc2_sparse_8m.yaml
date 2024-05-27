@@ -26,8 +26,13 @@ hypernet_embed: 64
 # task dependent settings ==================
 # a) vae parameters -------------
 vae: "vqvae"
+<<<<<<< HEAD
 vqvae_update_interval    : 10    # default (10) training run number
 codebook_update_interval : 20    # default (10) training run number
+=======
+vqvae_update_interval    : 20    # default (10) training run number
+codebook_update_interval : 10    # default (10) training run number
+>>>>>>> 257e39a5ad4ce051b1a491b5aa056c1a6cc15889
 n_codes                  : 256   # default (64)
 latent_dim               : 8     # default (8)
 

@@ -78,6 +78,7 @@ def _get_config_alg(params, arg_name, subfolder, map_name, task_name):
             config_name="lagma_sc2_sparse_3m"
             
     else: # dense smac
+<<<<<<< HEAD
         
         #.. check GRF
         if "academy" in map_name:
@@ -91,6 +92,12 @@ def _get_config_alg(params, arg_name, subfolder, map_name, task_name):
                 config_name="lagma_sc2_6h_vs_8z"
             else:
                 config_name="lagma_sc2"    
+=======
+        if map_name=="6h_vs_8z":
+            config_name="lagma_sc2_6h_vs_8z"
+        else:
+            config_name="lagma_sc2"        
+>>>>>>> 257e39a5ad4ce051b1a491b5aa056c1a6cc15889
                 
     if config_name is not None:
         with open(os.path.join(os.path.dirname(__file__), "config", subfolder, "{}.yaml".format(config_name)), "r") as f:
@@ -136,6 +143,7 @@ if __name__ == '__main__':
     config_dict = recursive_dict_update(config_dict, env_config)
         
     map_name=env_config['env_args']['map_name']
+<<<<<<< HEAD
     if "academy" in map_name:
         task_name ="grf"
     else:
@@ -144,6 +152,13 @@ if __name__ == '__main__':
             task_name = "sc2_sparse"
         else:
             task_name="sc2"
+=======
+    dense_flag=env_config['env_args']['reward_only_positive']
+    if dense_flag==False:
+        task_name = "sc2_sparse"
+    else:
+        task_name="sc2"
+>>>>>>> 257e39a5ad4ce051b1a491b5aa056c1a6cc15889
 
     for _i, _v in enumerate(params):
         if _v.split("=")[0] == "env_args.map_name":
