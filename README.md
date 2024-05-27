@@ -17,6 +17,11 @@ To train LAGMA on SC2 (sparse reward) setting tasks, run the following command:
 python3 src/main.py --config=lagma_sc2_sparse_3m --env-config=sc2_sparse with env_args.map_name=3m
 ```
 
+To train LAGMA on GRF (sparse reward) setting tasks, run the following command:
+```
+python3 src/main.py --config=lagma_grf_3_vs_1WK --env-config=academy_3_vs_1_with_keeper
+```
+
 # Publication
 If you find this repository useful, please cite our paper:
 ```
